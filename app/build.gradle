@@ -1,0 +1,90 @@
+plugins {
+  id 'application' 
+  id 'eclipse'
+  id 'java'
+  id 'org.springframework.boot' version '3.0.4'
+  id 'io.spring.dependency-management' version '1.1.0'
+  id "com.github.node-gradle.node" version "3.5.1" // gradle에서 npm 사용
+}
+
+// gradle을 실행하는 호스트에 node가 없을 경우를 대비해 
+// 지정된 버전의 node를 다운로드하게 만드는 설정
+// $ gradle npmSetup 을 실행하여 node 프로그램을 설치한다.
+node {
+  version = '17.6.0'
+  npmVersion = '8.5.1'
+  download = true
+}
+/*
+tasks.register("npm-install") {
+  group = "application"
+  description = "Installs dependencies from package.json"
+  tasks.appNpmInstall.exec();
+}
+*/
+task appNpmInstall(type: NpmTask) {
+  description = "Installs dependencies from package.json"
+  workingDir = file("${projectDir}/src/main/resources/static");
+  args = ["install"]
+}
+
+group = 'bitcamp'
+version = '0.0.1-SNAPSHOT'
+
+// CLI 환경에서 'build' 작업을 수행할 때 사용하는 설정
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8' 
+    sourceCompatibility = '17'
+    targetCompatibility = '17'
+}
+
+eclipse {
+    project {
+        name = "myapp"
+    }
+    jdt {  
+      sourceCompatibility = 17
+      targetCompatibility = 17
+      javaRuntimeName = "JavaSE-17"
+    }
+}
+
+configurations {
+  compileOnly {
+    extendsFrom annotationProcessor
+  }
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+  implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+  implementation ('org.springframework.boot:spring-boot-starter-web') {
+    exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+  }
+  implementation 'org.springframework.boot:spring-boot-starter-undertow'
+  implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0'
+  compileOnly 'org.projectlombok:lombok'
+  developmentOnly 'org.springframework.boot:spring-boot-devtools'
+  runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+  annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+  annotationProcessor 'org.projectlombok:lombok'
+  testImplementation 'org.springframework.boot:spring-boot-starter-test'
+  
+  //implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
+  implementation 'io.awspring.cloud:spring-cloud-starter-aws:2.4.4'
+  
+  
+
+}
+
+tasks.named('test') {
+  useJUnitPlatform()
+}
+
+application {
+    mainClass = 'bitcamp.myapp.App'
+}
