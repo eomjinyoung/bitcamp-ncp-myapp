@@ -86,8 +86,8 @@ function getStudent(e) {
       document.querySelector("#f-name").value = student.name;
       document.querySelector("#f-email").value = student.email;
       if (student.photo) {
-        document.querySelector("#f-photo-origin").href = `https://kr.object.ncloudstorage.com/bitcamp-bucket28-member-photo/${student.photo}`;
-        document.querySelector("#f-photo").src = `http://hlzkqgzmhuhe16692468.cdn.ntruss.com/${student.photo}?type=f&w=80&h=80&faceopt=true&ttype=jpg`;
+        document.querySelector("#f-photo-origin").href = `https://kr.object.ncloudstorage.com/bitcamp-bucket-53-member-photo/${student.photo}`;
+        document.querySelector("#f-photo").src = `http://tmtglryqqopg16856126.cdn.ntruss.com/${student.photo}?type=f&w=80&h=80&faceopt=true&ttype=jpg`;
       } /*else {
         document.querySelector("#f-photo").src = "../images/no-body.webp";
       }*/
