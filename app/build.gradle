@@ -11,14 +11,8 @@ plugins {
 // 지정된 버전의 node를 다운로드하게 만드는 설정
 // $ gradle npmSetup 을 실행하여 node 프로그램을 설치한다.
 node {
-<<<<<<< HEAD
-  // 버전을 지정하지 않으면 최신 버전 사용
-  //version = '17.6.0'
-  //npmVersion = '8.5.1'
-=======
   // version = '17.6.0'
   // npmVersion = '8.5.1'
->>>>>>> 1e6ad3631af76054e497c0ba8cac205771dc9de1
   download = true
 }
 /*
@@ -96,7 +90,6 @@ application {
     mainClass = 'bitcamp.myapp.App'
 }
 
-<<<<<<< HEAD
 // React build 설정
 def webappDir = "$projectDir/src/main/reactjs"
 /*
@@ -146,8 +139,4 @@ task installReact(type: Exec) {
     commandLine "npm", "audit", "fix"
     commandLine 'npm', 'install'
   }
-=======
-processResources {
-  dependsOn "appNpmInstall"
->>>>>>> 1e6ad3631af76054e497c0ba8cac205771dc9de1
 }
