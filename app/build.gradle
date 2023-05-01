@@ -128,7 +128,6 @@ task buildReact(type: Exec) {
 }
 
 task installReact(type: Exec) {
-  dependsOn "npmSetup"
   workingDir "$webappDir"
   inputs.dir "$webappDir"
   group = BasePlugin.BUILD_GROUP
