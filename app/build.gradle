@@ -138,3 +138,10 @@ task installReact(type: Exec) {
     commandLine "npm", "install"
   }
 }
+
+task reactNpmInstall(type: NpmTask) {
+  //dependsOn "reactNpmInstall"
+  description = "Installs React dependencies from package.json"
+  workingDir = file("$webappDir");
+  args = ["install"]
+}
