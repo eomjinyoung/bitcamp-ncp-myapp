@@ -120,7 +120,7 @@ task buildReact(type: Exec) {
   workingDir "$webappDir"
   inputs.dir "$webappDir"
   group = BasePlugin.BUILD_GROUP
-  if (System.getProperty("os.name".toLowerCase(Locale.ROOT).contains("windows")) {
+  if (System.getProperty("os.name").toLowerCase(Locale.ROOT).contains("windows")) {
     commandLine "npm.cmd", "run-script", "build"
   } else {
     commandLine "npm", "run-script", "build"
