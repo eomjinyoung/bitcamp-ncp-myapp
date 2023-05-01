@@ -70,9 +70,9 @@ application {
 // 지정된 버전의 node를 다운로드하게 만드는 설정
 // $ gradle npmSetup 을 실행하여 node 프로그램을 설치한다.
 node {
-  version = '18.16.0'
-  npmVersion = '9.5.1'
-  download = true
+  // version = '18.16.0'
+  // npmVersion = '9.5.1'
+  // download = true
 }
 /*
 tasks.register("npm-install") {
@@ -126,7 +126,7 @@ task buildReact(type: Exec) {
 }
 
 task installReact(type: Exec) {
-  dependsOn "npmSetup"
+  //dependsOn "npmSetup"
   workingDir "$reactAppDir"
   inputs.dir "$reactAppDir"
   group = BasePlugin.BUILD_GROUP
